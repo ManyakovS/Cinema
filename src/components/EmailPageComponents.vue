@@ -9,9 +9,6 @@
 
         <input v-model="email"
                 @focus="() => {isSelected = true
-                                this.wheel.prevent
-                                this.touchmove.prevent
-                                this.scroll.prevent
                                 }"
                 @focusout="() => {if(email=== '')
                                         isSelected = false}" 
@@ -29,6 +26,15 @@
             return {
                 isSelected: false,
                 email: '',
+            }
+        },
+        watch: {
+            isSelected() {
+                if(this.isSelected) {
+                    document.documentElement.style.overflow = 'hidden'
+                    return
+                }
+                document.documentElement.style.overflow = 'auto'
             }
         }
     }
