@@ -83,10 +83,10 @@
                 this.move += el.changedTouches[0].clientY
                 let minus = this.move - this.y
                 if(minus > 7000)  {
-                    this.swipeBottom()
+                    this.swipeTop()
                 }
                 else if (minus < -7000) {
-                    this.swipeTop()
+                    this.swipeBottom()
                 }
             },
             endMove() {
