@@ -88,7 +88,7 @@
             moved(el) {
                 this.move += el.changedTouches[0].clientY
                 
-                if(el.changedTouches[0].clientY < this.y && (this.y - el.changedTouches[0].clientY < 100))
+                if(el.changedTouches[0].clientY < this.y)
                 {
                     this.translateY -= .6
                     document.getElementsByClassName('swiper_country__list')[0].style.transition = "transform .1s linear;"
@@ -100,7 +100,7 @@
 
                     }
                 }
-                if(el.changedTouches[0].clientY > this.y && (el.changedTouches[0].clientY - this.y < 100))
+                if(el.changedTouches[0].clientY > this.y)
                 {
                     this.translateY += .6
                     document.getElementsByClassName('swiper_country__list')[0].style.transition = "transform .1s linear;"
