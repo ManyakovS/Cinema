@@ -16,7 +16,7 @@
             @touchmove="moved"
             @touchend="endMove"
             >
-            <transition name="list" v-for="lang in language.slice(0,5)" :key="lang.id"
+            <transition name="list" v-for="lang in language.slice(0,7)" :key="lang.id"
             >
                 <li class="swiper__item">{{lang.name}}</li>
             </transition>
@@ -49,13 +49,18 @@
                     {
                         id:6, name: 'Польский'
                     },
+                    {
+                        id:7, name: 'Словатский'
+                    },
 
                 ],
                 selectedLanguage: '',
                 val: 3,
                 y:0,
                 move:0,
-                animate: false
+                animate: false,
+
+                translateY: 0,
             }
         },
         methods: {
@@ -83,14 +88,40 @@
             moved(el) {
                 this.move += el.changedTouches[0].clientY
                 
-                if(el.changedTouches[0].clientY < this.y && el.changedTouches[0].clientY % 9 === 1)
-                    this.swipeTop()
-                if(el.changedTouches[0].clientY > this.y && el.changedTouches[0].clientY % 9 === 1)
-                    this.swipeBottom()
+                if(el.changedTouches[0].clientY < this.y && (this.y - el.changedTouches[0].clientY < 100))
+                {
+                    this.translateY -= .6
+                    document.getElementsByClassName('swiper_country__list')[0].style.transition = "transform .1s linear;"
+                    document.getElementsByClassName('swiper_country__list')[0].style.transform = "translateY(" + this.translateY +"px)"
+                    if(el.changedTouches[0].clientY % 9 === 1)
+                    {
+                        this.swipeTop()
+                        this.endAnimate()
+
+                    }
+                }
+                if(el.changedTouches[0].clientY > this.y && (el.changedTouches[0].clientY - this.y < 100))
+                {
+                    this.translateY += .6
+                    document.getElementsByClassName('swiper_country__list')[0].style.transition = "transform .1s linear;"
+                    document.getElementsByClassName('swiper_country__list')[0].style.transform = "translateY(" + this.translateY +"px)"
+                    if(el.changedTouches[0].clientY % 9 === 1)
+                    {
+                        this.swipeBottom()
+                        this.endAnimate()
+                    }
+                }
                 
             },
             endMove() {
                 this.y = 0
+                this.endAnimate()
+            },
+            endAnimate() {
+                this.translateY = 0
+                document.getElementsByClassName('swiper_country__list')[0].style.transition = "none"
+                document.getElementsByClassName('swiper_country__list')[0].style.transform = "translateY(" + this.translateY +"px)"
+
             },
             log(el) {
                 console.log(el)
@@ -118,9 +149,29 @@
             background-position-x: center;
         }
 
+        .swiper_country::before, .swiper_country::after {
+            content: '';
+            position: absolute;
+            background: $black;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            z-index: 100;
+        }
+        .swiper_country::after {
+            bottom: -35px;
+            height: 35%;
+        }
+        .swiper_country::before {
+            top: -55px;
+        }
         .swiper_country {
+            position: relative;
             margin: 15vh 0 5vh 0;
             .swiper_country__list {
+                transform: translateY(0px);
+
+                transition: transform .1s linear;
                 .swiper__item {
                     list-style: none;
                     font-size: 1.1rem;
@@ -128,7 +179,6 @@
                     text-align: center;
                     margin-bottom: 1vh;
                     color: $white;
-
                 }
 
                 .move_top{
@@ -149,11 +199,13 @@
                     0% {transform: translateY(7px);}
                     100% {transform: translateY(0px);}
                 }
-                
-                .swiper__item:nth-child(1), .swiper__item:nth-child(5) {
+                .swiper__item:nth-child(1), .swiper__item:nth-child(7) {
+                    opacity: .05;
+                }
+                .swiper__item:nth-child(2), .swiper__item:nth-child(6) {
                     opacity: .2;
                 }
-                .swiper__item:nth-child(2), .swiper__item:nth-child(4) {
+                .swiper__item:nth-child(3), .swiper__item:nth-child(5) {
                     opacity: .5;
                 }
             }
