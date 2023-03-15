@@ -74,21 +74,20 @@
                 this.animate = true;
             },
             scroll(el) {
-                if(el.deltaY > 0) this.swipeBottom()
-                else this.swipeTop()
+                if(el.deltaY > 0) this.swipeTop()
+                else this.swipeBottom()
             },
             startMove(el) {
                 this.y = el.changedTouches[0].clientY
             },
             moved(el) {
                 this.move += el.changedTouches[0].clientY
-                let minus = this.move - this.y
-                if(minus > 7000)  {
+                
+                if(el.changedTouches[0].clientY < this.y && el.changedTouches[0].clientY % 9 === 1)
                     this.swipeTop()
-                }
-                else if (minus < -7000) {
+                if(el.changedTouches[0].clientY > this.y && el.changedTouches[0].clientY % 9 === 1)
                     this.swipeBottom()
-                }
+                
             },
             endMove() {
                 this.y = 0
