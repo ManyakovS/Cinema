@@ -90,7 +90,7 @@
                 
                 if(el.changedTouches[0].clientY < this.y)
                 {
-                    this.translateY -= .6
+                    this.translateY -= 1.8
                     document.getElementsByClassName('swiper_country__list')[0].style.transition = "transform .1s linear;"
                     document.getElementsByClassName('swiper_country__list')[0].style.transform = "translateY(" + this.translateY +"px)"
                     if(this.translateY < -24)
@@ -102,7 +102,7 @@
                 }
                 if(el.changedTouches[0].clientY > this.y && (el.changedTouches[0].clientY - this.y < 100))
                 {
-                    this.translateY += .6
+                    this.translateY += 1.8
                     document.getElementsByClassName('swiper_country__list')[0].style.transition = "transform .1s linear;"
                     document.getElementsByClassName('swiper_country__list')[0].style.transform = "translateY(" + this.translateY +"px)"
                     if(this.translateY > 24)
