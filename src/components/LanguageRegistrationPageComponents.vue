@@ -93,19 +93,19 @@
                     this.translateY -= .6
                     document.getElementsByClassName('swiper_country__list')[0].style.transition = "transform .1s linear;"
                     document.getElementsByClassName('swiper_country__list')[0].style.transform = "translateY(" + this.translateY +"px)"
-                    if(el.changedTouches[0].clientY % 9 === 1)
+                    if(this.translateY < -24)
                     {
                         this.swipeTop()
                         this.endAnimate()
 
                     }
                 }
-                if(el.changedTouches[0].clientY > this.y)
+                if(el.changedTouches[0].clientY > this.y && (el.changedTouches[0].clientY - this.y < 100))
                 {
                     this.translateY += .6
                     document.getElementsByClassName('swiper_country__list')[0].style.transition = "transform .1s linear;"
                     document.getElementsByClassName('swiper_country__list')[0].style.transform = "translateY(" + this.translateY +"px)"
-                    if(el.changedTouches[0].clientY % 9 === 1)
+                    if(this.translateY > 24)
                     {
                         this.swipeBottom()
                         this.endAnimate()
