@@ -29,7 +29,7 @@
   max-height: 100vh;
   height: 100vh;
   width: 100vw;
-  background-color: #121212;
+  background-color: $black;
   justify-content: center;
   align-items: center;
 
