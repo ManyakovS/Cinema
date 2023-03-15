@@ -1,5 +1,6 @@
 <template>
-    <div class="container">
+    
+    <div class="container" >
         <span class="close" @click="this.$emit('CloseLang', true)"></span>
 
         <span id="country"></span>

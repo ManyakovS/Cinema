@@ -8,7 +8,11 @@
         <h4>What is your email address?</h4>
 
         <input v-model="email"
-                @focus="isSelected = true"
+                @focus="() => {isSelected = true
+                                this.wheel.prevent
+                                this.touchmove.prevent
+                                this.scroll.prevent
+                                }"
                 @focusout="() => {if(email=== '')
                                         isSelected = false}" 
                 type="email" placeholder="Email Address">
