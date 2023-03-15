@@ -146,7 +146,7 @@ import $ from 'jquery'
             }
         },
         updated() {
-            $('.swiper').animate({ scrollTop: 30 })
+            $('.swiper').animate({ scrollTop: 30 }, '.5s')
         }
         
     }
@@ -159,7 +159,7 @@ import $ from 'jquery'
 
     .swiper {
         height: 18vh;
-        overflow-y:scroll;
+        overflow-y:hidden;
         margin: 15vh 0 5vh 0;
 
         .swiper_country__list {
