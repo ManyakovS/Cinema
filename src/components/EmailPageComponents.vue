@@ -34,9 +34,6 @@
 @import "@/styles/variables";
 .container {
     justify-content: center;
-    overflow: 'hidden';
-    height: '100%';
-
     #email {
         background: url(../assets/Email.svg);
         background-repeat: no-repeat;
