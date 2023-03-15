@@ -46,6 +46,7 @@
 @import "@/styles/variables";
 .container {
     justify-content: center;
+    padding-bottom: 0 !important;
     #email {
         background: url(../assets/Email.svg);
         background-repeat: no-repeat;
