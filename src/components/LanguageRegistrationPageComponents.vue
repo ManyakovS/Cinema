@@ -56,7 +56,8 @@
                 ],
                 selectedLanguage: '',
                 val: 3,
-                y:0,
+                startY:0,
+                y: 0,
                 move:0,
                 animate: false,
 
@@ -83,13 +84,18 @@
                 else this.swipeBottom()
             },
             startMove(el) {
+                this.startY = el.changedTouches[0].clientY
                 this.y = el.changedTouches[0].clientY
             },
             moved(el) {
-                this.move += el.changedTouches[0].clientY
+                this.move = el.changedTouches[0].clientY
+                console.log(el.changedTouches[0].clientY)
                 
-                if(el.changedTouches[0].clientY < this.y)
+                if(this.move > this.startY && this.y <= this.move)
                 {
+                    if(this.y < this.move)
+                        this.y = this.move
+
                     this.translateY -= 2.4
                     document.getElementsByClassName('swiper_country__list')[0].style.transition = "transform .1s linear;"
                     document.getElementsByClassName('swiper_country__list')[0].style.transform = "translateY(" + this.translateY +"px)"
@@ -100,8 +106,11 @@
 
                     }
                 }
-                if(el.changedTouches[0].clientY > this.y && (el.changedTouches[0].clientY - this.y < 100))
+                if(this.move < this.startY && this.y > this.move)
                 {
+                    if(this.y > this.move)
+                        this.y = this.move
+
                     this.translateY += 2.4
                     document.getElementsByClassName('swiper_country__list')[0].style.transition = "transform .1s linear;"
                     document.getElementsByClassName('swiper_country__list')[0].style.transform = "translateY(" + this.translateY +"px)"
